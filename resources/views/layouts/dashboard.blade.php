@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -26,10 +29,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Home
                 </a>
-                <a class="navbar-brand" href="{{ url('blog') }}">
-                    Blog
-                </a>
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,7 +63,6 @@
                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -77,15 +75,24 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        @yield('content')
-                    </div>
+        {{-- struttura a colonne --}}
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-xs-12 col-md-9 col-lg-2">
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('admin.index') }}">Dashboar</a></li>
+                        <li><a href="{{ route('admin.posts.index') }}">Post</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Tags</a></li>
+                    </ul>
                 </div>
+                <main class="col-xs-12 col-md-9 col-lg-10">
+                    @yield('content')
+                </main>
             </div>
-        </main>
+        </div>
+
+        
     </div>
 </body>
 </html>
